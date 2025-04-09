@@ -1,0 +1,43 @@
+.liquor-topbar {
+  background-color: #1e1e2f;
+  border-bottom: 2px solid #2c2c3e;
+  font-size: 15px;
+  color: #f5f5f5;
+}
+
+.liquor-dropdown-toggle {
+  background-color: transparent;
+  color: #ab49de;
+  border-radius: 6px;
+  border: 1px solid #ab49de;
+  padding: 6px 14px;
+  transition: all 0.3s ease;
+}
+
+.liquor-dropdown-toggle:hover {
+  background-color: #ab49de;
+  color: #fff;
+}
+
+.liquor-topbar-links span {
+  color: #f5f5f5;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.liquor-topbar-links span:hover {
+  color: #ab49de;
+}
+
+.support-link span {
+  color: #f5f5f5;
+}
+
+.support-link span:hover {
+  color: #ab49de;
+}
+
+.contact-number {
+  color: #ab49de;
+}

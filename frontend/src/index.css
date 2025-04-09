@@ -1,0 +1,209 @@
+body {
+  margin: 0;
+  font-family: "Lato";
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+/* h1 {
+  font-family: 'Helvetica Neue', sans-serif;
+  letter-spacing: 1px;
+  
+}
+h2 {
+  font-family: 'Helvetica Neue', sans-serif;
+  letter-spacing: 0.5px;
+  font-style: italic;  
+}
+h3 {
+  font-family: 'Helvetica Neue', sans-serif;
+  letter-spacing: 1px;
+                                                
+} */
+
+
+.logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 8px; /* spacing between logo and brand text */
+}
+
+
+
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .card {
+  background-color: #1e1e1e;
+  border-color: #333;
+}
+
+body.dark-mode .table {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+
+/* home page */
+.icon-btn {
+  border: none;
+  background: #f2f2f2;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #333;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+  margin-right: 50px;
+}
+
+.icon-btn:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.icon-btn.active {
+  background-color: #b24141;
+  color: #fff;
+}
+
+
+
+
+
+
+
+.payment-method {
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #dee2e6;
+  text-align: center;
+  cursor: pointer;
+  background-color: #f8f9fa;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.payment-method.selected {
+  border-color: #6f42c1;
+  background-color: #f0e9ff;
+}
+
+.payment-method .label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #28a745;
+}
+
+.cash-method {
+  border: 2px solid #28a745;
+  background-color: #e9fbe5;
+  color: #28a745;
+}
+
+/* STRIPE CREDIT CARD STYLE */
+.stripe-card-wrapper {
+  perspective: 1000px;
+  height: 160px;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.stripe-card-wrapper.selected {
+  outline: 3px solid #6f42c1;
+  outline-offset: 4px;
+}
+
+.stripe-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.8s;
+  border-radius: 1rem;
+}
+
+.stripe-card-wrapper:hover .stripe-card-inner {
+  transform: rotateY(180deg);
+}
+
+.stripe-card-front,
+.stripe-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1.5rem;
+  color: white;
+  font-weight: 600;
+}
+
+.stripe-card-front {
+  background: linear-gradient(135deg, #5e2b97, #1a093a);
+}
+
+.stripe-card-back {
+  background: #291a42;
+  transform: rotateY(180deg);
+}
+
+.chip {
+  width: 40px;
+  height: 25px;
+  background-color: gold;
+  border-radius: 6px;
+}
+
+.card-number {
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.card-holder {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.stripe-strip {
+  width: 100%;
+  height: 40px;
+  background: #000;
+  margin-bottom: 10px;
+}
+
+.cvv-box {
+  align-self: flex-end;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+
+
+
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    background-color: #d4edda;
+    opacity: 0.6;
+  }
+  to {
+    background-color: transparent;
+    opacity: 1;
+  }
+}

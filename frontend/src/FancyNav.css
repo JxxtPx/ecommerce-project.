@@ -1,0 +1,60 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+
+.navbar-nav .nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-nav .nav-link,
+.navbar-nav .btn {
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #c983f0 !important;
+  font-family: "Montserrat", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link::before,
+.navbar-nav .nav-link::after,
+.navbar-nav .btn::before,
+.navbar-nav .btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background-color: #ab49de;
+  transition: all 0.4s cubic-bezier(0.4, -1, 0.2, -1);
+  z-index: -1;
+}
+
+.navbar-nav .nav-link::before,
+.navbar-nav .btn::before {
+  top: 0;
+  border-top-left-radius: 0.5em;
+  border-top-right-radius: 0.5em;
+}
+
+.navbar-nav .nav-link::after,
+.navbar-nav .btn::after {
+  bottom: 0;
+  border-bottom-left-radius: 0.5em;
+  border-bottom-right-radius: 0.5em;
+}
+
+.navbar-nav .nav-link:hover::before,
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .btn:hover::before,
+.navbar-nav .btn:hover::after {
+  width: 25%;
+  height: 3px;
+}
+
+/* Optional: Active state if you want it */
+.navbar-nav .nav-item.active .nav-link::before,
+.navbar-nav .nav-item.active .nav-link::after {
+  width: 100%;
+  height: 50%;
+}
