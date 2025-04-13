@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axiosInstance from "../utils/axiosInstance.js"; 
+import axiosInstance from "../utils/axiosInstance.js";
 import ProductCard from "../components/ProductCard";
 import { motion } from "framer-motion";
 import Countdown from "react-countdown";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 import {
   FaBeer,
@@ -29,6 +28,7 @@ function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortOption, setSortOption] = useState("");
+  const [loading, setLoading] = useState(true); // 🟢 Loading state
 
   const categories = [
     "All",
@@ -45,9 +45,16 @@ function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axiosInstance.get("/products");
-      setProducts(res.data);
-      filterProducts(initialCategory, searchTerm, sortOption, res.data);
+      try {
+        setLoading(true); // Start loading
+        const res = await axiosInstance.get("/products");
+        setProducts(res.data);
+        filterProducts(initialCategory, searchTerm, sortOption, res.data);
+      } catch (error) {
+        console.error("Error fetching products", error);
+      } finally {
+        setLoading(false); // Done loading
+      }
     };
     fetchData();
   }, []);
@@ -108,8 +115,7 @@ function HomePage() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        🥂 Flash Sale Ends in <Countdown date={Date.now() + 3600000} /> — Don't
-        Miss Out!
+        🥂 Flash Sale Ends in <Countdown date={Date.now() + 3600000} /> — Don't Miss Out!
       </motion.div>
 
       {/* Hero Section */}
@@ -207,7 +213,13 @@ function HomePage() {
 
       {/* Product Grid */}
       <div className="container mb-5">
-        {filteredProducts.length === 0 ? (
+        {loading ? (
+          <div className="text-center py-5">
+            <div className="spinner-border text-danger" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        ) : filteredProducts.length === 0 ? (
           <p className="text-center">No products found.</p>
         ) : (
           <div className="row g-4">
@@ -230,32 +242,33 @@ function HomePage() {
           </div>
         )}
       </div>
-      <div className="d-md-none">
-  <Link
-    to="/cocktail"
-    className="btn"
-    style={{
-      position: "fixed",
-      bottom: "70px",
-      right: "20px",
-      zIndex: 999,
-      backgroundColor: "#c97b84",
-      color: "#fff",
-      fontWeight: "500",
-      borderRadius: "50%",
-      width: "55px",
-      height: "55px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
-    }}
-    title="Cocktail AI"
-  >
-    🍹
-  </Link>
-</div>
 
+      {/* Floating Button (Mobile) */}
+      <div className="d-md-none">
+        <Link
+          to="/cocktail"
+          className="btn"
+          style={{
+            position: "fixed",
+            bottom: "70px",
+            right: "20px",
+            zIndex: 999,
+            backgroundColor: "#c97b84",
+            color: "#fff",
+            fontWeight: "500",
+            borderRadius: "50%",
+            width: "55px",
+            height: "55px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+          }}
+          title="Cocktail AI"
+        >
+          🍹
+        </Link>
+      </div>
     </div>
   );
 }
